@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - SENAI</title>
+    <link rel="stylesheet" href="style_cadastro_mobile.css">
+    <link rel="stylesheet" href="style_cadastro_tablet.css">
+    <link rel="stylesheet" href="style_cadastro_pc.css">
+</head>
+
+<body>
+    <main>
+        <!-- imagem senai em pé -->
+        <section id="section_imagem01"></section>
+
+        <!--Section principal onde está o conteúdo-->
+        <section id="sectionMain">
+
+            <!--mensagem para quando o cadastro for efetuado-->
+            <div id="msg_validacao">
+                <div id="div_msg">
+                    <p id="p_msg">Cadastro efetuado com sucesso</p>
+                    <img src="IMG/icons8-aviso-de-aviso-50.png" alt="icone verde" id="icone_verde">
+                </div>
+            </div>
+
+            <!--cadastro onde os inputs estão-->
+            <section id="cadastro" class="hidden">
+
+                <!--Inicio do meu form para os inputs-->
+                <form method="post" id="form"> 
+
+                    <!--Logo do senai (header)-->
+                    <header id="div_logo">
+                        <img src="IMG/SENAI_São_Paulo_logo.png" alt="agendaSenai_png" id="agendaSenai_png">
+                    </header>
+
+                    <!--p Cadastrar-se -->
+                    <div id="div_p_cadastrar">
+                        <p id="p_cadastrar">Cadastrar-se</p>
+                    </div>
+
+                    <!--DIV onde estão todos os inputs-->
+                    <div id="inputs_cadastro">
+
+                        <!--Primeiro input (nome)-->
+                        <span class="span-required">Nome deve conter no mínimo 3 caracteres</span> <!--span aparece quando da erro -->
+                        <div id="div_nome">
+                            <input type="text" name="input_nome" id="input_nome" class="required"
+                                placeholder="Digite seu nome" oninput="nomeValidacao()">
+                        </div>
+
+                        <!--Segundo input (email)-->
+                        <span class="span-required">Digite um email válido</span> <!--span aparece quando da erro -->
+                        <div id="div_email">
+                            <input type="text" name="input_email" id="input_email" class="required" placeholder="Digite seu e-mail" oninput="emailValidacao()" autocomplete="on">
+                        </div>
+
+                        <!--Terceiro input (CPF)-->
+                        <span class="span-required">Digite um CPF válido</span> <!--span aparece quando da erro -->
+                        <div id="div_cpf">
+                            <input type="text" name="input_email" id="input_cpf" class="required" placeholder="Digite seu CPF" oninput="cpfValidacao()" maxlength="14" autocomplete="off">
+                        </div>
+
+                        <!--Quarto input (senha)-->
+                        <span class="span-required">Digite uma senha com no mínimo 8 caracteres </span> <!--span aparece quando da erro -->
+                        <div id="div_senha">
+                            <input type="password" name="input_password" id="input_password" class="required" placeholder="Digite sua senha" oninput="mainPasswordValidacao()" autocomplete="off">
+
+                            <!--2 icones-->
+                            <label for="input_password" id="label_olhoEscondido_senha"><img src="IMG/escondido.png" alt="olhoEscondido_senha" id="olhoEscondido_senha" ></label>
+                            <label for="input_password" id="label_olhoAberto_senha"><img src="IMG/olho.png" alt="olhoAberto_senha" id="olhoAberto_senha"></label>
+                        </div>
+
+                        <!--Ultimo input (confirmar senha)-->
+                        <span class="span-required">Senhas devem ser compatíveis</span><!--span aparece quando da erro -->
+                        <div id="div_confSenha">
+                            <input type="password" name="input_conf_password" id="input_conf_password" class="required" placeholder="Confirme sua senha" oninput="comparePassword()" autocomplete="off">
+                           
+                            <!--2 icones-->
+                            <label for="input_conf_password" id="label_olhoEscondido_confsenha"><img src="IMG/escondido.png" alt="olhoEscondido_confsenha" id="olhoEscondido_confsenha"></label>
+                            <label for="input_conf_password" id="label_olhoAberto_confsenha"><img src="IMG/olho.png" alt="olhoAberto_confsenha" id="olhoAberto_confsenha"></label>
+                        </div>
+                    </div>
+
+                    <!--Botões de voltar e criar conta-->
+                    <div id="btn_finais">
+                        <div id="div_voltar">
+                            <a href="pagina01_Login.html" id="a_voltar">Voltar</a>
+                        </div>
+
+                        <div id="div_criarConta">
+                            <input type="submit" value="Criar conta" class="btn_criarConta">
+                        </div>
+                    </div>
+
+                    <!-- FOOTER DO SITE -->
+                    <footer>
+                        <p>Desenvolvido por: Guilherme Negrijo</p>
+                    </footer>
+                </form>
+            </section>
+        </section>
+
+        <section id="section_imagem02"></section>
+    </main>
+    <script src="./index.js/index_cadastro.js"></script>
+</body>
+
+</html>

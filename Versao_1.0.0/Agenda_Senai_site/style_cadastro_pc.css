@@ -1,0 +1,342 @@
+@charset "UFT-8";
+
+@media screen and (min-width: 993px) {
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+
+    main {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        overflow: hidden;
+    }
+
+    #msg_validacao {
+        position: relative;
+        background-color: lightgray;
+        color: #40C057;
+        padding: 10px;
+        width: 300px;
+        height: 50px;
+        border-radius: 5px;
+        top: -25px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        padding-bottom: 20px;
+    }
+
+    #div_msg {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        font-family: sans-serif;
+    }
+
+    footer{
+        margin-top: 30px;
+        width: 100%;
+        text-align: center;
+    }
+
+    #icone_verde {
+        width: 30px;
+    }
+
+    #section_imagem01 {
+        width: 1400px;
+        height: 100%;
+        background-color: black;
+        background-image: url(IMG/senai_logo02.jpg);
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #sectionMain {
+        width: 2000px;
+        min-width: 600px;
+        height: 100%;
+        background-color: white;
+        border-radius: 3px;
+        overflow-y: auto;
+        scrollbar-width: none;
+    }
+
+    #section_imagem02 {
+        width: 1400px;
+        height: 100%;
+        background-color: black;
+        background-image: url(IMG/pessoas_trabalhando03.jpg);
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #cadastro {
+        width: 100%;
+        min-width: 350px;
+        height: 100%;
+        border-radius: 0px;
+        padding: 0px 50px 0px 50px;
+    }
+
+    #div_logo {
+        display: flex;
+        justify-content: center;
+    }
+
+    #agendaSenai_png {
+        width: 200px;
+        height: 51px;
+        margin-bottom: 40px;
+        margin-top: 50px;
+    }
+
+    #p_cadastrar {
+        margin-bottom: 10px;
+        margin-left: 10px;
+        font-weight: normal;
+        font-size: 20px;
+        font-family: sans-serif;
+    }
+
+    #a_voltar {
+        text-decoration: none;
+        color: #215299;
+        font-weight: normal;
+        padding: 7px;
+    }
+
+    .span-required {
+        display: none;
+        font-size: 12px;
+        color: rgb(208, 38, 38);
+        margin-left: 10px;
+    }
+
+    /* deixar input.required com cor de fundo branco */
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
+        box-shadow: 0 0 0px 1000px #FFFFFF inset;
+        -webkit-text-fill-color: #000;
+    }
+
+
+    #inputs_cadastro input {
+        width: 100%;
+        height: 100%;
+        padding-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border: none;
+        border-radius: 15px;
+        font-size: 15px;
+        background-color: white;
+        color: black;
+        display: block;
+    }
+
+    #cadastro input:focus {
+        border: none;
+        outline: none;
+        background-color: white;
+        color: black;
+    }
+
+    /* Remove as setas do input type number no Chrome, Safari, Edge e Opera */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    #div_nome,
+    #div_email,
+    #div_cpf,
+    #div_senha,
+    #div_confSenha {
+        background-color: white;
+        color: black;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        height: 50px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        border: 1px solid black;
+    }
+
+    #div_nome:hover,
+    #div_email:hover,
+    #div_cpf:hover,
+    #div_senha:hover,
+    #div_confSenha:hover {
+        cursor: text;
+        background-color: white;
+        color: black;
+        width: 100%;
+        border: 1px solid black;
+    }
+
+    /* Remove o ícone de exibição de senha padrão no Edge */
+    input[type="password"]::-ms-reveal {
+        display: none;
+    }
+
+    /* esse é o label do password e conf_password para que o olhoFechado fique centralizado */
+    #label_olhoEscondido_senha,
+    #label_olhoEscondido_confsenha {
+        height: 100%;
+        cursor: text;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* icone olhoEscondido */
+    #olhoEscondido_senha,
+    #olhoEscondido_confsenha {
+        height: 30px;
+        margin-right: 10px;
+        cursor: pointer;
+        display: block;
+    }
+
+    /* esse é o label do password e conf_password para que o olhoAberto fique centralizado */
+    #label_olhoAberto_senha,
+    #label_olhoAberto_confsenha {
+        height: 100%;
+        cursor: text;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* icone olhoAberto */
+    #olhoAberto_senha,
+    #olhoAberto_confsenha {
+        height: 30px;
+        margin-right: 10px;
+        cursor: pointer;
+        display: none;
+    }
+
+    /* nao permite que o usuario consiga arastar os icones em nenhum navegador (isso serve para as img e icones) */
+    #olhoAberto_senha,
+    #olhoAberto_confsenha,
+    #olhoEscondido_senha,
+    #olhoEscondido_confsenha,
+    #agendaSenai_png {
+        -webkit-user-drag: none;
+        /* Chrome, Safari, Opera */
+        -khtml-user-drag: none;
+        /* Konqueror */
+        -moz-user-drag: none;
+        /* Firefox */
+        -o-user-drag: none;
+        /* Opera */
+    }
+
+    #btn_finais {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #div_voltar {
+        background-color: white;
+        padding: 15px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 40px;
+        border: 1px solid gray;
+        cursor: pointer;
+    }
+
+    #div_voltar:hover {
+        background-color: lightgray;
+    }
+
+    .btn_criarConta {
+        background-color: #215299;
+        color: white;
+        padding: 5px;
+        border-radius: 10px;
+        display: block;
+        width: 90px;
+        height: 40px;
+        border: 0.5px solid #101010;
+        cursor: pointer;
+    }
+
+    .btn_criarConta:hover {
+        background-color: #072755;
+        color: white;
+    }
+
+    .hidden {
+        opacity: 0;
+        filter: blur(15px);
+        transform: translateX(5%);
+        transition: transform 1.5s, filter 1s;
+    }
+
+    .show {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateX(0);
+        transition: transform 1.5s, filter 1s;
+    }
+
+    .border_red {
+        border: 2px solid #af2e2e;
+    }
+
+    .border_black {
+        border: 1px solid black;
+    }
+
+    .anima {
+        animation: animacao 2s linear;
+    }
+
+    .anima_voltar {
+        animation: animacao_voltar 2s linear;
+    }
+
+    @keyframes animacao {
+        0% {
+            top: -25px;
+            opacity: 0;
+        }
+
+        100% {
+            top: 25px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes animacao_voltar {
+        0% {
+            top: 25px;
+            opacity: 1;
+        }
+
+        100% {
+            top: -25px;
+            opacity: 0;
+        }
+    }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - SENAI</title>
+    <link rel="stylesheet" href="style_login_mobile.css">
+    <link rel="stylesheet" href="style_login_tablet.css">
+    <link rel="stylesheet" href="style_login_pc.css">
+</head>
+<body>
+    <main>
+        <!-- imagem senai em pé -->
+        <section id="section_imagem01"></section> 
+
+        <section id="sectionMain"> <!--Section principal onde está o conteúdo-->
+            <section id="login" class="hidden" onmouseenter=""> <!--Login onde os inputs estão-->
+
+                <header id="div_logo"> <!--Logo do senai-->
+                    <img src="IMG/SENAI_São_Paulo_logo.png" alt="agendaSenai_png" id="agendaSenai_png">
+                </header>
+
+                <div id="div_p_bemvindo"> <!--p de Boas vindas-->
+                    <div id="div_p_bemvindo02">
+                        <p id="p_bemvindo">Seja bem-vindo(a). Faça o login para acessar a agenda senai ou cadastre-se como novo usuário.</p>
+                    </div>
+                    
+                </div>
+
+                <div> <!--p Usuário -->
+                   <p id="p_usuario">Usuário</p>
+                </div>
+    
+                <!--Primeiro input (email)-->
+                <div id="div_email" class="border_black"> 
+                    <div id="div_alinharInput">
+                        <label for="input_email"><img src="IMG/icons8-usuário-40.png" alt="icone_usuario" id="icone_usuario"></label>
+                        <input type="email" name="input_email" id="input_email" placeholder="Digite seu e-mail ou CPF">
+                    </div>
+                </div>
+    
+                <div> <!--p Senha -->
+                    <p id="p_senha">Senha</p>
+                </div>
+
+                <!--Segundo input (senha) -->
+                <div id="div_senha" class="border_black">
+                    <div id="div_alinharInput"> <!--Div para alinhamento em row (display flex)-->
+                        <!-- Icone -->
+                        <label for="input_password"><img src="IMG/senha.png" alt="icone_senha" id="icone_senha"></label> 
+                        <input type="password" name="input_password" id="input_password" placeholder="Digite sua senha">
+                        <!--  2 Icones -->
+                        <label for="input_password" id="label_olhoEscondido_senha"><img src="IMG/escondido.png" alt="olhoEscondido_senha" id="olhoEscondido_senha" ></label>
+                        <label for="input_password" id="label_olhoAberto_senha"><img src="IMG/olho.png" alt="olhoAberto_senha" id="olhoAberto_senha"></label>
+                    </div>    
+                </div>
+    
+                <!-- <div id="div_span">
+                    <span id="span_error">Credencias inválidas!</span>
+                </div> -->
+                
+                <div id="div_entrar">  <!-- Button para Entar -->
+                    <button id="btn_entrar">Entrar</button>
+                </div>
+
+                <div id="div_cadastro">  <!-- Direcionamento para o cadastro -->
+                    <p id="p_cadastro">Não possui conta? <a href="pagina02_cadastro.html" id="a_pagLogin">Clique aqui</a></p> 
+                </div>
+
+                <!-- FOOTER do site -->
+                <footer>
+                    <p>Desenvolvido por: Guilherme Negrijo</p>
+                </footer>
+                
+            </section>
+        </section>
+
+        <!-- imagem de pessoas trabalhando senai -->
+        <section id="section_imagem02"></section>
+    </main>
+    <script src="./index.js/index_login.js"></script>
+</body>
+</html>
