@@ -235,3 +235,5 @@ olhoAberto_confsenha.addEventListener('click', ()=>{
         olhoAberto_confsenha.style.display = 'none'
     }
 })
+
+/* Hoje é quarta-feira!! */
