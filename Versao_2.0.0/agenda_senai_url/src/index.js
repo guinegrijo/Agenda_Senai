@@ -18,7 +18,7 @@ class AppController {
 
   routes() {
     const apiRoutes= require('./routes/apiRoutes')
-    this.express.use('/Agenda_Senai/v1/',apiRoutes);// Definição da URL Base
+    this.express.use('/Agenda_Senai/',apiRoutes);// Definição da URL Base
   }
 }
 

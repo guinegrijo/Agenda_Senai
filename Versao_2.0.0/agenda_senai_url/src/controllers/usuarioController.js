@@ -2,9 +2,9 @@ const connect = require("../db/connect");
 
 module.exports = class usuarioController {
   static async createUsuario(req, res) {
-    const { nome, email, senha, confSenha } = req.body;
+    const { nome, email, senha, cpf_usuario } = req.body;
 
-     if (!nome || !email || !senha || !confSenha) {
+     if (!nome || !email || !senha || !cpf_usuario) {
         return res.status(400).json({ error: "Todos os campos devem ser preenchidos" });
 
 
@@ -12,18 +12,18 @@ module.exports = class usuarioController {
         return res.status(400).json({ error: "Email inválido. Deve conter '@docente.senai.br'" });
 
         //Lenght conta quantos numeros tem 
-      }if (senha.length < 8 || senha.length > 30) {
+      }else if (senha.length < 8 || senha.length > 30) {
             return res.status(400)({ message: "Senha deve ter entre 8 e 30 caracteres." });
 
-      }if (senha !== confSenha) {
-                return res.status(400)({ message: "Confirmação de senha deve ser igual à senha." });
-
-      }else if (isNaN(cpf) || cpf.length !== 11) {
-        return res.status(400).json({ error: "CPF inválido. Deve conter exatamente 11 dígitos numéricos" });
-      
+      }else if (isNaN(cpf_usuario) || cpf_usuario.length !== 11) {
+        //Verifica se tem só números e se tem 11 dígitos
+        return res.status(400).json({
+          error: "CPF inválido. Deve conter exatamente 11 dígitos numéricos",
+        });
+        
     } else {
       // Construção da query INSERT
-      const query = `INSERT INTO usuario (nome,cpf, email,senha,confSenha) VALUES('${cpf}', '${senha}', '${email}', '${name}')`;
+      const query = `INSERT INTO usuario (nome, email,senha,cpf_usuario) VALUES('${senha}', '${email}', '${nome}','${cpf_usuario }')`;
       // Executando a query criada
       try {
         connect.query(query, function (err) {
@@ -72,70 +72,32 @@ module.exports = class usuarioController {
 
   }
 
-  static async updateUsuario(req, res) {
-    // Desestrutura e recupera os dados enviados via corpo da requisição
-    const { id, nome, email, senha, confSenha} = req.body;
+   // Função de login
+   static async loginUsuario(req, res) {
+    const { email, senha,cpf_usuario } = req.body;
 
-    // Validar se todos os campos foram preenchidos
-    if (!nome || !email || !senha || !confSenha) {
-      return res
-        .status(400)
-        .json({ error: "Todos os campos devem ser preenchidos" });
-    }
-    const query = `UPDATE usuario SET nome=?,email=?,senha=?,confSenha=? WHERE id_usuario = ?`;
-    const values = [nome, email, senha, confSenha, id];
-
-    try{
-      connect.query(query,values,function(err,results){
-        if(err){
-          if(err.code === "ER_DUP_ENTRY"){
-            return res.status(400).json({error:"Email já cadastrado por outro usuario"});
-          }else{
-            console.error(err);
-            return res.status(500).json({error:"Erro interno do servidor"});
-          }
-        }
-        if(results.affectedRows === 0){
-          return res.status(404).json({error:"Usuário não encontrado"});
-        }
-        return res.status(200).json({message:"Usuário atualizado com sucesso"});
-        
-
-      })
-      
-  }
-    catch(error){
-      console.error("Erro ao executar consulta",error);
-      return res.status(500).json({error: "Erro interno no servidor"});
-
+    if (!email || !senha) {
+      return res.status(400).json({ error: "Email e senha são obrigatórios." });
     }
 
-  }
+    const query = `SELECT * FROM usuario WHERE email = '${email}' AND password = '${senha}'`;
 
-  static async deleteUsuario(req, res) {
-    const usuarioId = req.params.id;
-    const query = `DELETE FROM usuario WHERE id_usuario=?`;
-    const values = [usuarioId]
-    try{
-      connect.query(query,values,function(err,results){
-        if(err){
-        console.error(err);
-        return res.status(500).json({error:"Erro interno no servidor"})
-        }
-        if(results.affectedRows===0){
-          return res.status(404).json({error:"Usuário não encontrado"})
+    try {
+      connect.query(query, function (err, results) {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ error: "Erro interno do servidor" });
         }
 
-        return res.status(200).json({
-          message:"Usuário excluido com sucesso"
-        })
-
-      })
-    }catch(error){
-      console.error(error);
-      return res.status(500).json({error:"Erro interno no servidor"})
-
+        if (results.length > 0) {
+          return res.status(200).json({ message: `Bem-vindo, ${results[0].name}!` });
+        } else {
+          return res.status(401).json({ error: "Email ou senha incorretos." });
+        }
+      });
+    } catch (error) {
+      console.error("Erro ao executar consulta:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
-
   }
-};
+}
