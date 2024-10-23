@@ -32,7 +32,7 @@ module.exports = class usuarioController {
       });
     } else {
       // Construção da query INSERT
-      const query = `INSERT INTO usuario (nome, email, senha, cpf_usuario) VALUES('${nome}', '${email}', '${senha}','${cpf_usuario}')`;
+      const query = `INSERT INTO usuario (nome, email, senha, cpf_usuario) VALUES('${nome}', '${email.toLowerCase()}', '${senha}','${cpf_usuario}')`;
 
       // Executando a query criada
       try {
