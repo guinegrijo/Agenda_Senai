@@ -82,7 +82,6 @@ form.addEventListener('submit', (event) =>{
     if (valid) {
         animacao()
         for (let i = 0; i < campos.length; i++) {
-            campos[i].value = ''
             campos[i].parentNode.style.border = '1px solid black'
         }
     }
