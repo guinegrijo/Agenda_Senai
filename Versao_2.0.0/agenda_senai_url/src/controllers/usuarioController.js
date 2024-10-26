@@ -4,10 +4,11 @@ module.exports = class usuarioController {
   static async createUsuario(req, res) {
     const { nome, email, senha, cpf_usuario, senhac } = req.body;
 
-    if (!nome || !email || !senha || !cpf_usuario || !senhac) {
+    if (!nome || !email ||!senha || !cpf_usuario|| !senhac) {
       return res
         .status(400)
         .json({ error: "Todos os campos devem ser preenchidos" });
+        //Verifica se o email tem @docente.senai.br
     } else if (!email.includes("@docente.senai.br")) {
       return res
         .status(400)
@@ -26,12 +27,13 @@ module.exports = class usuarioController {
         error:
           "CPF inválido. Deve conter exatamente 14 dígitos contando com . e -",
       });
-    } else if (senha !== senhac) {
+    }else if (senha !== senhac) {
       return res.status(400).json({
         error: "As senhas devem ser iguais",
       });
     } else {
       // Construção da query INSERT
+      //transformar todos os caracteres para letras minúsculas
       const query = `INSERT INTO usuario (nome, email, senha, cpf_usuario) VALUES('${nome}', '${email.toLowerCase()}', '${senha}','${cpf_usuario}')`;
 
       // Executando a query criada
