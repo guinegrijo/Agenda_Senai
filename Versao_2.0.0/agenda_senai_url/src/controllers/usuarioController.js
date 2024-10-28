@@ -142,4 +142,101 @@ module.exports = class usuarioController {
       return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
+
+  static async deleteUsuario(req, res) {
+    const { cpf_usuario } = req.body;
+
+    // Verifica se o CPF foi enviado no corpo da requisição
+    if (!cpf_usuario) {
+      return res.status(400).json({ error: "CPF do usuário é necessário para deletar" });
+    }
+
+    // Query para deletar o usuário com base no CPF
+    let query = "DELETE FROM usuario WHERE cpf_usuario = ?";
+    let values = [cpf_usuario]
+
+    try {
+      connect.query(query, values, function (err, results) {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ error: "Erro interno do servidor" });
+        }
+
+        // Verifica se algum registro foi afetado pela query
+        if (results.affectedRows > 0) {
+          return res.status(200).json({ message: "Usuário deletado com sucesso" });
+        } else {
+          return res.status(404).json({ error: "Usuário não encontrado" });
+        }
+      });
+    } catch (error) {
+      console.error("Erro ao deletar usuário:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
+    }
+  }
+
+  static async updateUsuario(req, res) {
+    const { cpf_usuario, nome, email, senha } = req.body;
+
+    // Verifica se o CPF foi enviado para identificar o usuário
+    if (!cpf_usuario) {
+        return res.status(400).json({ error: "CPF do usuário é necessário para atualizar" });
+    }
+
+    // Verifica se ao menos um campo foi fornecido
+    if (!nome && !email && !senha) {
+        return res.status(400).json({ error: "Pelo menos um campo de atualização é necessário (nome, email ou senha)" });
+    }
+
+    
+    const arrayToUpdate = [];
+    const values = [];
+
+    if (nome) {
+        arrayToUpdate.push("nome = ?");
+        values.push(nome);
+    }
+    if (email) {
+        // Verificação para e-mail com domínio específico
+        if (!email.includes("@docente.senai.br")) {
+            return res.status(400).json({ error: "Email inválido. Deve conter '@docente.senai.br'" });
+        }
+        arrayToUpdate.push("email = ?");
+        values.push(email.toLowerCase());
+    }
+    if (senha) {
+        // Validação de tamanho de senha
+        if (senha.length < 8 || senha.length > 30) {
+            return res.status(400).json({ error: "Senha deve ter entre 8 e 30 caracteres." });
+        }
+        arrayToUpdate.push("senha = ?");
+        values.push(senha);
+    }
+
+    values.push(cpf_usuario); // Adiciona o CPF no final para a condição WHERE
+
+    // Monta a query SQL dinamicamente com os campos atualizados
+    const query = `UPDATE usuario SET ${arrayToUpdate.join(", ")} WHERE cpf_usuario = ?`;
+
+    try {
+        connect.query(query, values, function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: "Erro interno do servidor" });
+            }
+
+            // Verifica se algum registro foi afetado pela query
+            if (results.affectedRows > 0) {
+                return res.status(200).json({ message: "Usuário atualizado com sucesso" });
+            } else {
+                return res.status(404).json({ error: "Usuário não encontrado" });
+            }
+        });
+    } catch (error) {
+        console.error("Erro ao atualizar usuário:", error);
+        return res.status(500).json({ error: "Erro interno no servidor" });
+    }
+}
+
+
 }
