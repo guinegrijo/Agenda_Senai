@@ -45,11 +45,14 @@ module.exports = class usuarioController {
 
             if (err.code === "ER_DUP_ENTRY") {
               // Verifica se a mensagem de erro menciona o campo 'email' ou 'cpf_usuario'
+              console.log("AQUI")
+              console.log(err.message)
               if (err.message.includes("email")) {
                 return res
                   .status(400)
                   .json({ error: "O Email já está vinculado a outro usuário" });
-              } else if (err.message.includes("cpf_usuario")) {
+                  
+              } else {                
                 return res
                   .status(400)
                   .json({ error: "O CPF já está vinculado a outro usuário" });
