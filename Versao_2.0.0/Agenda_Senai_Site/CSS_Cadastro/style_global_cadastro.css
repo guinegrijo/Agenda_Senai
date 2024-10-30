@@ -17,35 +17,8 @@ main {
     overflow-y: auto;
 }
 
-/* stylo para a mensagem após o cadastro */
-#msg_validacao {
-    position: relative;
-    background-color: lightgray;
-    color: #40C057;
-    padding: 10px;
-    width: 300px;
-    height: 50px;
-    border-radius: 5px;
-    top: -25px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: block;
-    padding-bottom: 20px;
-}
-
-#div_msg {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    font-family: sans-serif;
-}
-
-#icone_verde {
-    width: 30px;
-}
-
 #div_logo {
+    margin-top: 50px;
     display: flex;
     justify-content: center;
 }
