@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+@media screen and (max-width: 680px) {
+
+    #sectionMain {
+        width: 450px;
+        height: 100%;
+    }
+
+    #cadastro {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        position: relative;
+    }
+
+    #agendaSenai_png {
+        width: 200px;
+        height: 51px;
+        margin-bottom: 40px;
+        margin-top: 5px;
+    }
+
+    header {
+        position: absolute;
+        left: 50%;
+        top: 5%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+    }
+
+    header p {
+        width: 300px;
+    }
+
+    footer {
+        position: fixed;
+        left: 50%;
+        top: 95%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+    }
+
+    footer p {
+        width: 300px;
+    }
+
+    .hidden {
+        opacity: 0;
+        filter: blur(15px);
+        transform: translateX(30%);
+        transition: transform 1.5s, filter 1s;
+    }
+    
+    .show {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateX(0);
+        transition: transform 1.5s, filter 1s;
+    }
+}

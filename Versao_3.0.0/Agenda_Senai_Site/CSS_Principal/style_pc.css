@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    overflow-x: auto;
+}
+
+header {
+    width: 100vw;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo_senai {
+    width: 300px;
+    z-index: 10;
+}
+
+#menu_humbuguer {
+    cursor: pointer;
+}
+
+#div_icones {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 400px;
+    height: 100vh;
+    height: 1;
+    padding-left: 20px;
+    padding-top: 70px;
+    left: 0%;
+    top: 0px;
+}
+
+#div_icones img {
+    width: 40px;
+    cursor: pointer;
+}
+
+
+.imgs {
+    margin-bottom: 50px;
+}
+
+.div_flex {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    width: 90%;
+}
+
+.div_flex p {
+    margin-top: 10px;
+    margin-left: 30px;
+    display: none;
+    cursor: pointer;
+}
+
+#linha-horizontal {
+    width: 100%;
+    border: 1px solid red;
+    align-items: center;
+    margin-top: 10px;
+ }
+
+ #linha-horizontal1 {
+    width: 100%;
+    border: 1px solid black;
+    align-items: center;
+    margin-top: 20px;
+ }
+
+ #linha-horizontal2 {
+    width: 100%;
+    border: 1px solid red;
+    align-items: center;
+    margin-top: 360px;
+ }
+
+ #linha-horizontal3 {
+    width: 100%;
+    border: 1px solid black;
+    align-items: center;
+    margin-top: 20px;
+ }
