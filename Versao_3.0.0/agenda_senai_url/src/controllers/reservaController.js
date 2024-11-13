@@ -6,6 +6,11 @@ module.exports = class reservaController {
 
         if (!data_hora_inicio || !data_hora_fim || !cpf_usuario || !id_sala) {
             return res.status(400).json({ error: "Todos os campos devem ser preenchidos" });
+        } else if (cpf_usuario.length !== 14) {
+            //Verifica se tem só números e se tem 14 dígitos
+            return res.status(400).json({
+              error: "CPF inválido. Deve conter exatamente 14 dígitos contando com . e -",
+            })
         }
 
         // Verificação de conflitos de horário
@@ -13,9 +18,9 @@ module.exports = class reservaController {
             SELECT * FROM reserva 
             WHERE id_sala = ? 
             AND (data_hora_inicio < ? AND data_hora_fim > ?)
-        `;
+        `
         
-        // Aqui passamos o `id_sala`, `data_hora_fim` e `data_hora_inicio` corretamente
+        // Aqui passamos o `id_sala`, `data_hora_fim` e `data_hora_inicio`
         const values = [id_sala, data_hora_fim, data_hora_inicio];
 
         try {
@@ -106,7 +111,7 @@ module.exports = class reservaController {
         }
     }
 
-    static async updateReserva(req, res) {
+    static async updateReserva(req, res) { //MUITO ERRADOOOO esse update pqp codigo escroto
         const { data_hora_inicio , data_hora_fim , cpf_usuario , id_sala, id_reserva } = req.body;
     
         // Verifica se o CPF foi enviado para identificar o usuário
@@ -115,8 +120,8 @@ module.exports = class reservaController {
         }
     
         // Verifica se ao menos um campo foi fornecido
-        if (!data_hora_inicio && !data_hora_fim && !id_sala) {
-            return res.status(400).json({ error: "Pelo menos um campo de atualização é necessário (data_hora_inicio, data_hora_fim ou id_sala)" });
+        if (!data_hora_inicio && !data_hora_fim && !id_sala && !cpf_usuario) {
+            return res.status(400).json({ error: "Pelo menos um campo de atualização é necessário (data_hora_inicio, data_hora_fim, id_sala)" });
         }
     
         

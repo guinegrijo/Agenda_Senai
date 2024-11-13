@@ -6,6 +6,7 @@ const pool = mysql.createPool({
     user:'alunods',
     password:'senai@604',
     database:'Agenda_Senai',
+    timezone: 'Z',
 })
 
 module.exports= pool;
