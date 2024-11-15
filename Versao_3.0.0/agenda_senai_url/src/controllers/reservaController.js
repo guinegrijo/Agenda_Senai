@@ -80,16 +80,16 @@ module.exports = class reservaController {
 
 
     static async deleteReserva(req, res) {
-        const { id_reserva } = req.body;
+        const { id_reserva, cpf_usuario } = req.body;
     
-        // Verifica se o CPF foi enviado no corpo da requisição
-        if (!id_reserva) {
-          return res.status(400).json({ error: "O id_reserva é necessário para deletar" });
+       
+        if (!id_reserva || !cpf_usuario) {
+          return res.status(400).json({ error: "O id_reserva e cpf_usuario são necessários para deletar" });
         }
     
-        // Query para deletar o usuário com base no CPF
-        let query = `DELETE FROM reserva WHERE id_reserva = ?`;
-        let values = [id_reserva]
+        // Query para deletar a reserva com base no id_reserva e CPF
+        let query = `DELETE FROM reserva WHERE id_reserva = ? AND cpf_usuario = ?`
+        let values = [id_reserva, cpf_usuario]
     
         try {
           connect.query(query, values, function (err, results) {
@@ -111,63 +111,8 @@ module.exports = class reservaController {
         }
     }
 
-    static async updateReserva(req, res) { //MUITO ERRADOOOO esse update pqp codigo escroto
-        const { data_hora_inicio , data_hora_fim , cpf_usuario , id_sala, id_reserva } = req.body;
-    
-        // Verifica se o CPF foi enviado para identificar o usuário
-        if (!id_reserva) {
-            return res.status(400).json({ error: "O id_reserva é necessário para atualizar" });
-        }
-    
-        // Verifica se ao menos um campo foi fornecido
-        if (!data_hora_inicio && !data_hora_fim && !id_sala && !cpf_usuario) {
-            return res.status(400).json({ error: "Pelo menos um campo de atualização é necessário (data_hora_inicio, data_hora_fim, id_sala)" });
-        }
-    
+    static async updateReserva(req, res) { 
         
-        const arrayToUpdate = [];
-        const values = [];
-    
-        if (data_hora_inicio) {
-            arrayToUpdate.push("data_hora_inicio = ?");
-            values.push(data_hora_inicio);
-        }
-        if (data_hora_fim) {
-            arrayToUpdate.push("data_hora_fim = ?");
-            values.push(data_hora_fim);
-        }
-        if (id_sala) {
-            arrayToUpdate.push("id_sala = ?");
-            values.push(id_sala);
-        }
-        if (cpf_usuario) {
-            arrayToUpdate.push("cpf_usuario = ?");
-            values.push(cpf_usuario);
-        }
-    
-        values.push(id_reserva); // Adiciona o id_reserva no final para a condição WHERE
-    
-        // Monta a query SQL dinamicamente com os campos atualizados
-        const query = `UPDATE usuario SET ${arrayToUpdate.join(", ")} WHERE id_reserva = ?`;
-    
-        try {
-            connect.query(query, values, function (err, results) {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).json({ error: "Erro interno do servidor" });
-                }
-    
-                // Verifica se algum registro foi afetado pela query
-                if (results.affectedRows > 0) {
-                    return res.status(200).json({ message: "Reserva atualizado com sucesso" });
-                } else {
-                    return res.status(404).json({ error: "Reserva não encontrado" });
-                }
-            });
-        } catch (error) {
-            console.error("Erro ao atualizar usuário:", error);
-            return res.status(500).json({ error: "Erro interno no servidor" });
-        }
     }
 
 

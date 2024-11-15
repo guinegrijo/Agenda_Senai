@@ -14,6 +14,14 @@ const reservaController = require('../controllers/reservaController')
 router.post('/reserva', reservaController.createReserva)
 router.get('/reserva', reservaController.getAllReserva)
 router.delete('/reserva', reservaController.deleteReserva)
+router.put('/reserva', reservaController.updateReserva)
+
+const salaController = require('../controllers/salaController')
+
+router.post('/sala', salaController.createSala)
+router.get('/sala', salaController.getAllSala)
+router.delete('/sala', salaController.deleteSala)
+router.put('/sala', salaController.updateSala)
 
 module.exports = router
 
