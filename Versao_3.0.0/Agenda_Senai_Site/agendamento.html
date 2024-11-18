@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Serviço</title>
+    <link rel="stylesheet" href="CSS_Principal/style_pc.css"> <!-- Aqui você pode referenciar o seu arquivo de estilo -->
+</head>
+<body>
+
+    <header>
+        <img src="IMG/SENAI_São_Paulo_logo.png" alt="logo" id="logo_senai">
+    </header>
+
+    <div id="linha-horizontal"></div>
+    <div id="linha-horizontal1"></div>
+    <div id="linha-horizontal2"></div>
+    <div id="linha-horizontal3"></div>
+
+    <main>
+        <h2>Agendamento de Serviço</h2>
+
+        <!-- Formulário de Agendamento -->
+        <section id="form-agendamento">
+            <form id="agendamentoForm">
+                <!-- Nome -->
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Digite seu nome">
+                </div>
+
+                <!-- E-mail -->
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="cpf" id="cpf" name="cpf" required placeholder="Digite seu CPF">
+                </div>
+
+                <!-- Data -->
+                <div class="form-group">
+                    <label for="data">Data do Agendamento:</label>
+                    <input type="date" id="data" name="data" required>
+                </div>
+
+                <!-- Hora -->
+                <div class="form-group">
+                    <label for="hora">Hora do Agendamento:</label>
+                    <input type="time" id="hora" name="hora" required>
+                </div>
+
+                <!-- Serviço -->
+                <div class="form-group">
+                    <label for="servico">Bloco:</label>
+                    <select id="blocos" name="blocos" required>
+                        <option value="Bloco A">Bloco A</option>
+                        <option value="Bloco B">Bloco B</option>
+                        <option value="Bloco C">Bloco C</option>
+                    </select>
+                </div>
+
+                <!-- Observações -->
+                <div class="form-group">
+                    <label for="observacoes">Observações (opcional):</label>
+                    <textarea id="observacoes" name="observacoes" rows="4" placeholder="Deixe uma mensagem adicional"></textarea>
+                </div>
+
+                <!-- Botão de Envio -->
+                <button type="submit">Agendar</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="index.js/index_principal.js"></script>
+</body>
+</html>
