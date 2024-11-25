@@ -4,6 +4,8 @@ module.exports = class reservaController {
     static async createSala(req, res) {
         const { numero_da_sala, capacidade, descricao } = req.body;
 
+        //Se qualquer um dos campos (numero_da_sala, capacidade, descricao) não for preenchido execute o bloco de código
+        //A condição será true se pelo menos um dos campos não estiver preenchido
         if (!numero_da_sala || !capacidade || !descricao) {
             return res.status(400).json({ error: "Todos os campos devem ser preenchidos" });
         } else if (numero_da_sala.length > 3){
@@ -21,13 +23,16 @@ module.exports = class reservaController {
             // Executa a consulta para verificar conflitos
             connect.query(query, values, (err, results) => {
                 if (err) {
-                    console.log(err);
-                    return res.status(500).json({ error: "Erro ao criar sala" });
-                }
+                    if (err.code === "ER_DUP_ENTRY") {
+                        return res.status(400).json({ error: "Essa sala já está vinculada" })
+                    }
+                    console.error(err);
+                    return res.status(500).json({ error: "Erro ao criar sala" })
+                }                
 
-                return res.status(201).json({ message: "Sala criada com sucesso!" });
+                return res.status(201).json({ message: "Sala criada com sucesso!" })
 
-            });
+            })
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: "Erro interno do servidor" });
@@ -62,8 +67,8 @@ module.exports = class reservaController {
         }
 
 
-        let query = `DELETE FROM sala WHERE id_sala = ?`;
-        let values = [id_sala]
+        const query = `DELETE FROM sala WHERE id_sala = ?`;
+        const values = [id_sala]
 
         try {
             connect.query(query, values, function (err, results) {
@@ -89,6 +94,8 @@ module.exports = class reservaController {
     static async updateSala(req, res) {
         const { numero_da_sala, capacidade, descricao, id_sala } = req.body
 
+        //Se todos os campos (numero_da_sala, capacidade, descricao) não forem preenchidos, execute o bloco de código
+        //O operador && retorna true apenas se todos os operandos forem verdadeiros
         if (!numero_da_sala && !capacidade && !descricao) {
             return res.status(400).json({ error: "Pelo menos um dos campos devem ser preenchidos (numero_da_sala, capacidade, descricao)" })
         }
@@ -117,6 +124,10 @@ module.exports = class reservaController {
         try {
             connect.query(query, values, function (err, results) {
                 if (err) {
+                    if (err.code === "ER_DUP_ENTRY") {
+                        return res.status(400).json({ error: "Essa sala já está vinculada" })
+                    }
+
                     console.error(err)
                     return res.status(500).json({ error: "Erro ao atualizar sala" })
                 }
