@@ -46,7 +46,7 @@ document.getElementById('btn_entrar').addEventListener("click", loginUser)
         //Reseta os campos do formulário
         //document.getElementById("form").reset();
 
-        window.location.href = "pagina_principal.html";
+        window.location.href = "pagina_principal.html"; 
 
     })
     .catch((error) => {

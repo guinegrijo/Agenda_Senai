@@ -8,8 +8,8 @@ module.exports = class reservaController {
         //A condição será true se pelo menos um dos campos não estiver preenchido
         if (!numero_da_sala || !capacidade || !descricao) {
             return res.status(400).json({ error: "Todos os campos devem ser preenchidos" });
-        } else if (numero_da_sala.length > 3){
-            return res.status(400).json({ error: "numero_da_sala aceita apenas 3 caracteris" });
+        } else if (numero_da_sala.length > 3 || numero_da_sala.length < 3){
+            return res.status(400).json({ error: "numero_da_sala aceita apenas 3 caracteres" });
         }
 
         const query = `
@@ -74,7 +74,7 @@ module.exports = class reservaController {
             connect.query(query, values, function (err, results) {
                 if (err) {
                     console.error(err);
-                    return res.status(500).json({ error: "Erro interno do servidor" });
+                    return res.status(500).json({ error: "Erro ao deletar sala" });
                 }
 
                 // Verifica se algum registro foi afetado pela query
@@ -99,6 +99,11 @@ module.exports = class reservaController {
         if (!numero_da_sala && !capacidade && !descricao) {
             return res.status(400).json({ error: "Pelo menos um dos campos devem ser preenchidos (numero_da_sala, capacidade, descricao)" })
         }
+
+        if (!id_sala) {
+            return res.status(400).json({ error: "O id_sala é necessário para alterar a sala" });
+        }
+
 
         const arrayToUpdate = []
         const values = []

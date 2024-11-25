@@ -15,8 +15,8 @@ module.exports = class reservaController {
 
         // Verificação de conflitos de horário
         const conflictQuery = `
-            SELECT * FROM reserva 
-            WHERE id_sala = ? 
+            SELECT * FROM reserva
+            WHERE id_sala = ?
             AND (data_hora_inicio < ? AND data_hora_fim > ?)
         `
         
