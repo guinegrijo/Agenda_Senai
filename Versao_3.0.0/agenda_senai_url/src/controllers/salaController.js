@@ -2,7 +2,6 @@ const connect = require("../db/connect")
 
 module.exports = class reservaController {
 
-    // POST
     static async createSala(req, res) {
         const { numero_da_sala, capacidade, descricao } = req.body;
 
@@ -42,7 +41,6 @@ module.exports = class reservaController {
         
     }
 
-    // GET
     static async getAllSala(req, res) {
         const query = `SELECT * FROM sala`;
 
@@ -61,8 +59,6 @@ module.exports = class reservaController {
         }
     }
 
-
-    // DELETE
     static async deleteSala(req, res) {
         const { id_sala } = req.body;
 
@@ -95,7 +91,6 @@ module.exports = class reservaController {
         }
     }
 
-    // PUT
     static async updateSala(req, res) {
         const { numero_da_sala, capacidade, descricao, id_sala } = req.body
 
