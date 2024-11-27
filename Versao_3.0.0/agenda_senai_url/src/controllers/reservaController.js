@@ -134,35 +134,63 @@ module.exports = class reservaController {
 
     // Verifica se todos os campos obrigatórios foram enviados
     if (!data_hora_inicio || !data_hora_fim || !cpf_usuario || !id_sala) {
-      return res
-        .status(400)
-        .json({ error: "Todos os campos devem ser preenchidos" });
+        return res.status(400).json({ error: "Todos os campos devem ser preenchidos" });
     }
 
-    // Consulta SQL para atualizar a reserva
-    const query = `UPDATE reserva  SET data_hora_inicio = ?, data_hora_fim = ? WHERE cpf_usuario = ? AND id_sala = ?`;
-    const values = [data_hora_inicio, data_hora_fim, cpf_usuario, id_sala];
+    // Query de validação
+    const validacaoQuery = `
+        SELECT * 
+        FROM reserva 
+        WHERE id_sala = ? 
+          AND (
+            (data_hora_inicio < ? AND data_hora_fim > ?) OR
+            (data_hora_inicio < ? AND data_hora_fim > ?) OR
+            (data_hora_inicio >= ? AND data_hora_fim <= ?)
+          )
+          AND cpf_usuario != ?
+    `;
+    const validacaoValues = [ id_sala, data_hora_fim, data_hora_inicio, data_hora_fim, data_hora_inicio, data_hora_inicio, data_hora_fim, cpf_usuario];
+
+    // Consulta para atualizar a reserva
+    const atualizacaoQuery = `
+        UPDATE reserva 
+        SET data_hora_inicio = ?, data_hora_fim = ? 
+        WHERE cpf_usuario = ? AND id_sala = ?
+    `;
+    const atualizacaoValues = [data_hora_inicio, data_hora_fim, cpf_usuario, id_sala];
 
     try {
-      // Executa a consulta no banco de dados
-      connect.query(query, values, (err, results) => {
-        if (err) {
-          console.error("Erro ao executar a query:", err);
-          return res.status(500).json({ error: "Erro ao atualizar a reserva" });
-        }
+        // Verifica conflitos de horário
+        connect.query(validacaoQuery, validacaoValues, (conflictErr, conflictResults) => {
+            if (conflictErr) {
+                console.error("Erro ao verificar conflitos:", conflictErr);
+                return res.status(500).json({ error: "Erro ao verificar conflitos de horário" });
+            }
 
-        // Verifica se a reserva foi encontrada e atualizada
-        if (results.affectedRows > 0) {
-          return res
-            .status(200)
-            .json({ message: "Reserva atualizada com sucesso" });
-        } else {
-          return res.status(404).json({ error: "Reserva não encontrada" });
-        }
-      });
+            // Se encontrar um conflito, retorna erro
+            if (conflictResults.length > 0) {
+                return res.status(409).json({ error: "Conflito de horário: outra reserva já existe nesse horário" });
+            }
+
+            // Atualiza a reserva se não houver conflitos
+            connect.query(atualizacaoQuery, atualizacaoValues, (updateErr, updateResults) => {
+                if (updateErr) {
+                    console.error("Erro ao atualizar a reserva:", updateErr);
+                    return res.status(500).json({ error: "Erro ao atualizar a reserva" });
+                }
+
+                // Verifica se a reserva foi encontrada e atualizada
+                if (updateResults.affectedRows > 0) {
+                    return res.status(200).json({ message: "Reserva atualizada com sucesso" });
+                } else {
+                    return res.status(404).json({ error: "Reserva não encontrada" });
+                }
+            });
+        });
     } catch (error) {
-      console.error("Erro ao atualizar Reserva:", error);
-      return res.status(500).json({ error: "Erro interno no servidor" });
+        console.error("Erro ao processar atualização de reserva:", error);
+        return res.status(500).json({ error: "Erro interno no servidor" });
     }
-  }
+}
+
 };
