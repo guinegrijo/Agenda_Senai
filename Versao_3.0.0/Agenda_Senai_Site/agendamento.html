@@ -10,43 +10,37 @@
     <header>
       <img src="IMG/logo_senai.png" alt="Logo SENAI" class="logo" />
     </header>
-    <div id="linha-horizontal"></div>
-    <div id="linha-horizontal1"></div>
-    
-    <main>
-      <div class="agenda">
-        <h1>RESERVAS</h1>
-        <p>Selecione uma sala para verificar sua disponibilidade</p>
-        <form>
-          <select name="blocos" id="blocos">
-            <option value="">Blocos</option>
-            <option value="bloco-a">Bloco A</option>
-            <option value="bloco-b">Bloco B</option>
-            <option value="bloco-c">Bloco C</option>
-          </select>
-          <select name="salas" id="salas">
-            <option value="">Salas</option>
-            <option value="sala-1">Sala 1</option>
-            <option value="sala-2">Sala 2</option>
-            <option value="sala-3">Sala 3</option>
-            <option value="sala-4">Sala 4</option>
-            <option value="sala-5">Sala 5</option>
-          </select>
-          <div id="botao">
-            <button type="submit">Agendar</button>
-          </div>
-          
-          
-        </form>
-      </div>
-      <div id="div_icones"></div>
-      <div class="div_flex">
-        <img src="IMG/icons8-usuário-40.png" alt="Ícone Usuário" id="usuario_icon"/>
-      </div>
-    </div>
-    <div id="linha-horizontal2"></div>
-    <div id="linha-horizontal3"></div>
-    </main>
 
+    <div class="agenda">
+      
+      <section>        
+          <h1>Lista de Salas</h1>
+          <p>Selecione uma sala para a reserva</p>
+          <br>
+          <select id="sala-select">
+            <option value="" disabled selected>Salas</option>
+          </select>   
+          <div class="botao">
+            <a href="horario.html"><button type="button">Agendar</button></a>
+          </div>     
+      </section>
+    </div>
+    <main>
+      <div id="div_icones">
+          <img src="IMG/hamburger.png" alt="menu_humbuguer" id="menu_humbuguer" class="imgs">
+          
+          <div class="div_flex">
+              <img src="IMG/engrenagem_icon.png" alt="Ícone Configurações" class="imgs">
+              <p class="img_p">CONFIGURAÇÕES</p>
+          </div>
+          <div class="div_flex">
+              <img src="IMG/icons8-usuário-40.png" alt="Ícone Usuário" id="usuario_icon">
+              <p class="img_p">USUÁRIO</p>
+          </div>
+      </div>
+  </main>
+
+    <script src="appAgen.js"></script>
   </body>
+
 </html>

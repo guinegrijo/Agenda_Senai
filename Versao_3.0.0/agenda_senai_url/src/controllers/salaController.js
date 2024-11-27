@@ -51,7 +51,7 @@ module.exports = class reservaController {
                     return res.status(500).json({ error: "Erro interno do Servidor" });
                 }
 
-                return res.status(200).json({ message: "Lista de salas", Salas: results });
+                return res.status(200).json({ message: "Lista de salas", salas: results });
             })
         } catch (error) {
             console.error("Erro ao executar consulta:", error);

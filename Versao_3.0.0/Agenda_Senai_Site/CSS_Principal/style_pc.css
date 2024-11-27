@@ -70,30 +70,3 @@ header {
     cursor: pointer;
 }
 
-#linha-horizontal {
-    width: 100%;
-    border: 1px solid red;
-    align-items: center;
-    margin-top: 10px;
- }
-
- #linha-horizontal1 {
-    width: 100%;
-    border: 1px solid black;
-    align-items: center;
-    margin-top: 20px;
- }
-
- #linha-horizontal2 {
-    width: 100%;
-    border: 1px solid red;
-    align-items: center;
-    margin-top: 360px;
- }
-
- #linha-horizontal3 {
-    width: 100%;
-    border: 1px solid black;
-    align-items: center;
-    margin-top: 20px;
- }
