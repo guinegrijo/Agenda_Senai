@@ -1,0 +1,11 @@
+/* Reset básico */
+* {
+    margin: 0; /* Remove a margem de todos os elementos */
+    padding: 0;/* Remove o padding de todos os elementos */
+    box-sizing: border-box;/* Faz com que a largura e altura dos elementos incluam o padding e a borda */
+}
+
+header .logo img{
+    width: 50px; /* Define a largura do logo */
+    padding: 30;
+}

@@ -1,11 +1,8 @@
 /* Reset básico */
 * {
-    margin: 0;
-    /* Remove a margem de todos os elementos */
-    padding: 0;
-    /* Remove o padding de todos os elementos */
-    box-sizing: border-box;
-    /* Faz com que a largura e altura dos elementos incluam o padding e a borda */
+    margin: 0; /* Remove a margem de todos os elementos */
+    padding: 0;/* Remove o padding de todos os elementos */
+    box-sizing: border-box;/* Faz com que a largura e altura dos elementos incluam o padding e a borda */
 }
 
 body {
@@ -47,12 +44,14 @@ form select {
 }
 .botao{
     border-radius: 8px;
-    padding: 10px;
-    color: rgb(132, 132, 132);
+    padding: 40px;
+    color: rgb(214, 214, 214);
+    cursor: pointer;
+    
 
 }
 #sala-select{
-    color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0); /*Cor do texto 'salas'*/
     padding: 5px;
     border-radius: 8px;
     width: 400px;/* Define a largura do container */
@@ -66,6 +65,7 @@ form select {
     
 }
 
+/*Faz um ponteiro ao passar o mouse em cima do menu*/
 #menu_humbuguer {
     cursor: pointer;
 }
@@ -74,11 +74,9 @@ form select {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
     position: fixed;
     width: 400px;
     height: 90%;
-    /* height: 100vh; */
     padding-left: 20px;
     padding-top: 70px;
     bottom: 18%;    /* Posiciona a div no fundo da tela */
@@ -88,16 +86,15 @@ form select {
 
 
 #div_icones img {
-    width: 40px;
+    width: 40px; /*tamanho dos icones*/
     
 }
 
-
 .imgs {
-    margin-bottom: 50px;
+    margin-bottom: 50px; /*espacameto entre os icones*/
 }
 
-.div_flex {
+.div_flex { /*configuração do usuario e config*/
     display: flex;
     align-items: start;
     justify-content: start;
