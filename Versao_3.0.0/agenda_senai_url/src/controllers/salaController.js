@@ -3,7 +3,7 @@ const connect = require("../db/connect")
 module.exports = class reservaController {
 
     static async createSala(req, res) {
-        const { numero_da_sala, capacidade, descricao } = req.body;
+        const { numero_da_sala, capacidade, descricao } = req.body; //pega os campos necessarios do body
 
         //Se qualquer um dos campos (numero_da_sala, capacidade, descricao) não for preenchido execute o bloco de código
         //A condição será true se pelo menos um dos campos não estiver preenchido
@@ -22,7 +22,7 @@ module.exports = class reservaController {
 
         try {
             // Executa a consulta para verificar conflitos
-            connect.query(query, values, (err, results) => {
+            connect.query(query, values, (err) => {
                 if (err) {
                     if (err.code === "ER_DUP_ENTRY") {
                         return res.status(400).json({ error: "Essa sala já está vinculada" })
