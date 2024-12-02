@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", getAllSalaSelect);
 
 function getAllSala() {
-  fetch("http://localhost:5000/Agenda_Senai/sala", {
+  fetch("http://10.89.240.67:5000/Agenda_Senai/sala", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +45,7 @@ function getAllSala() {
 }
 
 function getAllSalaSelect() {
-  fetch("http://localhost:5000/Agenda_Senai/sala", {
+  fetch("http://10.89.240.67:5000/Agenda_Senai/sala", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

@@ -11,7 +11,7 @@ document.getElementById('btn_entrar').addEventListener("click", loginUser)
     console.log(input_email_cpf, senha)
 
     // Requisição da URL BASE para o endpoint de cadastro de usuário
-    fetch("http://localhost:5000/Agenda_Senai/login", {
+    fetch("http://10.89.240.67:5000/Agenda_Senai/login", {
         // Realiza uma chamada HTTP para o servidor (a rota definida)
         method: "POST",
   
