@@ -1,9 +1,8 @@
-//document.addEventListener("DOMContentLoaded", getAllSala);
-document.addEventListener("DOMContentLoaded", getAllSalaSelect);
+document.addEventListener("DOMContentLoaded", getAllSala);
 
-function getAllSalaSelect() {
+function getAllSala() {
+  fetch("http://10.89.240.67:5000/Agenda_Senai/sala", {
 
-  fetch("http://localhost:5000/Agenda_Senai/sala", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -33,4 +32,5 @@ function getAllSalaSelect() {
       alert("Erro ao obter salas" + error.message);
       console.error("Erro:", error.message);
     });
-}
+
+  }
