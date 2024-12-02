@@ -14,6 +14,11 @@ module.exports = class reservaController {
         error:
           "CPF inválido. Deve conter exatamente 14 dígitos contando com . e -",
       });
+    } else if (data_hora_inicio >= data_hora_fim ){
+      return res.status(400).json({
+        error:
+          "Digite um horário valido",
+      });
     }
 
     // Verificação de conflitos de horário
