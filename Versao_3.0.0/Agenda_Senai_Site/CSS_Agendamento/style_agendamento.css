@@ -42,13 +42,17 @@ form select {
     border-radius: 10px;  /* Arredonda as bordas da caixa */
     font-size: 60px;/* Define o tamanho da fonte dentro da caixa*/
 }
-.botao{
-    border-radius: 8px;
-    padding: 40px;
-    color: rgb(214, 214, 214);
+#botao{
+    border-radius: 25%;
+    padding: 20px;
     cursor: pointer;
-    
-
+}
+button{
+    padding: 5px;
+    border-radius: 10px; 
+    color: #0e0e0e;
+    cursor: pointer;
+    background-color: #ffffff;
 }
 #sala-select{
     color: rgb(0, 0, 0); /*Cor do texto 'salas'*/
